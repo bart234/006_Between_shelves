@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>Welcome in reservation World</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block css_file %}{% endblock %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    {% block js_scripts %}  {% endblock %}
+</head>
+<body>
+<div class="container">
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Reservation World</a>
+        </div>
+
+
+        {% if user.is_authenticated  %}
+        <ul class="nav navbar-nav">
+            <li><a href="/room_list">Our Rooms</a></li>
+            <li><a href="/buldings">Buldings list</a></li>
+
+        <li class="dropdown">
+           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reservations<span class="caret"></span></a>
+           <ul class="dropdown-menu">
+              <li><a href="/user/reservations/{{ user.username }}">My reservation</a></li>
+              <li><a href="/reservations/availble">Availble reservation</a></li>
+              <li><a href="/reservation/urgent">Urgent reservation</a></li>
+           </ul>
+        </li>
+
+        <li><a href="/user/bills">My bills</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Invoices<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+               <li><a href="/invoice_list">My invoices</a></li>
+               <li><a href="/invoice_new">New invoice</a></li>
+               <li><a href="/invoice_list/unpaid">Invoice to pay</a></li>
+            </ul>
+         </li>
+
+        {% if user.is_staff %}
+            <li><a href="/company/members">Members bills</a></li>
+        {% else %}
+            <li><a href="/company/members">Other Members</a></li>
+        {% endif %}
+
+        {% if user.is_staff %}
+        <li class="dropdown">
+           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Staff<span class="caret"></span></a>
+           <ul class="dropdown-menu">
+                <li><a href="/admin/reprice">Monthly script</a></li>
+                <li><a href="/admin/requests/{{ user.username }}">User requests</a></li>
+           </ul>
+        </li>
+        {% endif %}
+
+        {% if user.is_superuser %}
+        <li class="dropdown">
+           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Staff<span class="caret"></span></a>
+           <ul class="dropdown-menu">
+            <li><a href="/admin/reprice">Monthly script</a></li>
+            <li><a href="/admin/requests/{{ user.username }}">User requests</a></li>
+           </ul>
+        </li>
+        {% endif %}
+        </ul>
+      {% else %}
+        <guest menu>
+        <ul class="nav navbar-nav">
+                <li><a href="/room_list">Our Rooms</a></li>
+                <li><a href="/buldings">Buldings</a></li>
+                <li><a href="/reservations/availble">Availble reservation</a></li>
+        </ul>
+        </guest menu>
+        {% endif %}
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="/edit" disabled>{{ user.username }}</a></li>
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                {% else %}
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+                {% endif %}
+            </ul>
+      </div>
+    </nav>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <strong>{{ message }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+ {% block content %} {% endblock %}
+
+    </div>
+</body>
+</html>

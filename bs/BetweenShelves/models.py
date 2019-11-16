@@ -4,12 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Genre(models.Model):
     types = models.CharField(max_length = 100, null=False)
-
-    def __str__(self):
-        return self.types
-
-class SubGenre(models.Model):
-    types = models.CharField(max_length = 100, null=True)
+    status = models.IntegerField(null=False)
 
     def __str__(self):
         return self.types
@@ -18,14 +13,16 @@ class Book(models.Model):
     title = models.CharField(max_length = 250, null=False, unique=True)
     author = models.CharField(max_length = 150, null=True)
     genre = models.ForeignKey(Genre, on_delete=models.PROTECT, null=False)
-    subgenre = models.ForeignKey(SubGenre, on_delete=models.PROTECT, null=True)
+    subgenre = models.ForeignKey(Genre, on_delete=models.PROTECT, null=True, related_name='subgenre')
     heigth = models.IntegerField(null=True)
+    price = models.DecimalField(max_digits=5, decimal_places=2, null=False)
 
     def __str__(self):
         return self.title
 
 class Hobby(models.Model):
     types = models.CharField(max_length = 100, null=False)
+    status = models.IntegerField(null=False)
 
     def __str__(self):
         return self.types

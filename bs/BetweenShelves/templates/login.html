@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% csrf_token %}
+
+
+<form action="" method="post" >
+    {{form.as_table}}
+    <br>
+    <button type="submit" >Login</button>
+        <!-- {% for el in form %}
+           <div class="col-sm-1"></div>
+           <div class="form-group has-feedback row" id="div_{{ el.html_name }}_fields">   {# has-success, has-error , has-warning  #}
+               <label class="col-sm-2 col-form-label" {# text-success #}
+                      for="inputError2"
+                      id="label_password">{{ el.label }}:
+               </label>
+   
+               <div class="col-sm-5">
+                   <input type="text"
+                          class="form-control"
+                          id="input_{{ el.html_name }}"
+                          name="{{ el.html_name }}"
+                          required
+                          aria-describedby="inputError2Status">
+               </div>
+           </div>
+   
+   
+        {% endfor %}
+        <div class="col-sm-5"></div>
+           <button type="submit" class="btn btn-default">Login</button>
+        </div> -->
+        {% csrf_token %}
+        </form> 
+
+{% endblock content %}
+
