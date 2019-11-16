@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from BetweenShelves.froms import FormLogin
+from BetweenShelves.froms import FormLogin, FormCreateUser
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -18,7 +18,7 @@ class Login(View):
     def post(self,request):
         form= FormLogin(request.POST)
         if form.is_valid():
-            l = form.cleaned_data['login']
+            l = form.cleaned_data['username']
             p = form.cleaned_data['pwd']
             user = authenticate(request, username=l, password=p)
             if user is not None:
@@ -35,23 +35,10 @@ class Logout(View):
         messages.success(request, "You are logged out")
         return redirect("Index")
 
+class CreateUser(View):
+    def get(self, request):
+        f = FormCreateUser()
+        return render(request,'newuser.html', {'form':f})
 
-#  def post(self, request):
-#         form = FormUserLogin(request.POST)
-
-#         if form.is_valid():
-#             l = form.cleaned_data['login']
-#             p1 = form.cleaned_data['passw1']
-#             user = authenticate(request, username=l, password=p1)
-#             if user is not None:
-#                 login(request, user)
-#                 messages.success(request, "{} login succesful".format(l))
-#                 return redirect('login_view')
-#             else:
-#                 messages.warning(request, "This login does not exist or password is wrong")
-#                 return redirect('login_view')
-#         else:
-#             messages.warning(request, "This login does not exist or password is wrong")
-#             return redirect('index')
-
-        
+    def post(self, request):
+        pass

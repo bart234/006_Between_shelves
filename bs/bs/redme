@@ -1,0 +1,44 @@
+Basics:
+Login, Log Out, Create New user
+
+
+At main menu our books:
+    List of website books
+
+At main menu after log in:
+    Market Books:
+        Our Books - list of all books (Users and Site)
+            With button: 
+                request to borrow,  ( icon- send message to user)
+                request to buy,  ( icon- send message to user)
+                ask about opinion,  ( icon- send message to user)
+                read comment
+                User can add existing book to him favourite
+                User can add existing book to his wish list
+                User can add existing book to his sell list
+        My Books : books which i have, i can add comment to them here, change it status (to sell, remove from my library)
+
+At main menu after log in:
+    My books:
+        Add new: User can add new book
+        User can add existing book to his sell list
+        User can add existing book to him favourite
+
+After login at user config
+    User config: change everything except username
+    User config: can chose hobby from list,
+    User config: can chose hobby or add new (new hobby need to by verify - thats why have status 2 - admin accepting it(status:1) or no(delete))
+
+At main menu should be opcion to fins friend:
+    User can find me friend: (after find, next to user  should be option send message)
+        - who has at least 3-5 this same books
+        - who has at least 1-5 this same hobbyies
+        - who has at least 1-5 this same kind of books on shelves
+        - who has at least 3 books this same author
+
+At main menu option market: books to sell, books to buy, my makret
+    My market:
+        MyUser can add book  to sell list (first to owning list, then to list to sell) , or to buing list
+        User be inform about if other user want to buy this book or sell it - as info he get other user username
+    Books to sell/buy:
+        Books list with information who seling it ( icon- send message to user)
