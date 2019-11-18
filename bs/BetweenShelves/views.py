@@ -1,11 +1,23 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from BetweenShelves.froms import FormLogin, FormCreateUser
+from BetweenShelves.froms import FormLogin, FormCreateUser, FormEditUser
 from django.contrib import messages
 from django.contrib.auth.models import User
 from BetweenShelves.models import UserCfg
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
+
+class UserEdit(View):
+    def get(self, request):
+        if User.is_authenticated:
+            f = FormEditUser()
+            return render(request, 'user_edit.html', {'form':f})
+        else:
+            messages.warning(request, "Please login")
+            return redirect('Login')
+        pass
+    def post(self,request):
+        pass
 
 class Index(View):
     def get(self,request):

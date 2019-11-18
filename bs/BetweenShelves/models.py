@@ -30,6 +30,7 @@ class Hobby(models.Model):
 
 class UserCfg(models.Model):
     user = models.OneToOneField(User,unique = True, blank=False, on_delete=models.CASCADE)
+    description = models.CharField(null=True, max_length = 300)
     mobile = models.CharField(null=False, max_length=9)
     hobby = models.ManyToManyField(Hobby, blank=True, related_name='hobby')
     favourite_books = models.ManyToManyField(Book, blank=True, related_name= 'fav_books')
