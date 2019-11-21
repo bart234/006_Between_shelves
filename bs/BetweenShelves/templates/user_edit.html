@@ -5,9 +5,28 @@
 
 
 <form action="" method="post" >
-    {{form.as_p}}
     <br>
+    <p>Username</p>
+    <input type='text' value = "{{user.username}}" disabled>
+    <br>
+    <p>First name</p>
+    <input type='text' id="fname" value = "{{user.first_name}}">
+    <p>Last name</p>
+    <input type='text' id="lname" value = "{{user.last_name}}">
+    <p>Email</p>
+    <input type='text' id="email" value = "{{user.email}}">
+    <br>
+    <p>Description</p>
+    <input type='textarea' id="description" value = "{{cfg.description}}">
+    <p>Mobile</p>
+    <input type='text' id="mobile" value = "{{cfg.mobile}}">
+    <!-- {% for el in cfg.hobby%} 
+        {{el.types}}
+    {% endfor %} -->
+    #TODO: To  finish
+    <!-- {"user":u,'cfg':u2}) -->
     <button type="submit" >Save</button>
+
         <!-- {% for el in form %}
            <div class="col-sm-1"></div>
            <div class="form-group has-feedback row" id="div_{{ el.html_name }}_fields">   {# has-success, has-error , has-warning  #}

@@ -4,7 +4,15 @@ Login, Log Out, Create New user
 
 At main menu our books:
     List of website books
+    Books to sell
+    Looking for book
 
+After login at user config
+    User config: change everything except username
+    User config: can chose hobby from list,
+    User config: can chose hobby or add new (new hobby need to by verify - thats why have status 2 - admin accepting it(status:1) or no(delete))
+
+    
 At main menu after log in:
     Market Books:
         Our Books - list of all books (Users and Site)
@@ -16,7 +24,7 @@ At main menu after log in:
                 User can add existing book to him favourite
                 User can add existing book to his wish list
                 User can add existing book to his sell list
-        My Books : books which i have, i can add comment to them here, change it status (to sell, remove from my library)
+        My Books : list books which i have, i can add comment to them here, change it status (to sell, remove from my library)
 
 At main menu after log in:
     My books:
@@ -24,10 +32,6 @@ At main menu after log in:
         User can add existing book to his sell list
         User can add existing book to him favourite
 
-After login at user config
-    User config: change everything except username
-    User config: can chose hobby from list,
-    User config: can chose hobby or add new (new hobby need to by verify - thats why have status 2 - admin accepting it(status:1) or no(delete))
 
 At main menu should be opcion to fins friend:
     User can find me friend: (after find, next to user  should be option send message)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 class Genre(models.Model):
@@ -16,6 +17,9 @@ class Book(models.Model):
     subgenre = models.ForeignKey(Genre, on_delete=models.PROTECT, null=True, related_name='subgenre')
     heigth = models.IntegerField(null=True)
     price = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    comment = models.CharField(max_length = 500, null = True, default ="")
+    rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, default = 0.0)
+
 
     def __str__(self):
         return self.title
@@ -39,6 +43,15 @@ class UserCfg(models.Model):
     user_list_to_buy  = models.ManyToManyField(Book, blank=True, related_name='user_buy')
     user_list_to_sell = models.ManyToManyField(Book,  blank=True,related_name='user_sell')
     friends = models.ManyToManyField(User, blank=True, related_name='friends')
-
+    
     def __str__(self):
         return self.user.username
+
+
+
+class Comments(models.Model):
+    user = models.ForeignKey(User, null = False, on_delete=models.PROTECT)
+    book = models.ForeignKey(Book, null=False,  on_delete=models.PROTECT)
+    create_time = models.DateTimeField(default=datetime.now, null=False)
+    comment = models.CharField(null = False, max_length=300)
+

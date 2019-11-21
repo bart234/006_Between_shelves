@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-     <title>Welcome in reservation World</title>
+     <title>Between Shelves</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block css_file %}{% endblock %}
@@ -15,71 +15,97 @@
 <div class="container">
 
     <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">Reservation World</a>
-        </div>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Between Shelves</a>
+            </div>
 
 
-        {% if user.is_authenticated  %}
-        <ul class="nav navbar-nav">
-            <li><a href="/room_list">Our Rooms</a></li>
-            <li><a href="/buldings">Buldings list</a></li>
+            {% if user.is_authenticated  %}
+            <ul class="nav navbar-nav">
+                <!-- <li><a href="/room_list">Our Rooms</a></li> -->
+                <!-- <li><a href="/buldings">Buldings list</a></li> -->
 
-        <li class="dropdown">
-           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reservations<span class="caret"></span></a>
-           <ul class="dropdown-menu">
-              <li><a href="/user/reservations/{{ user.username }}">My reservation</a></li>
-              <li><a href="/reservations/availble">Availble reservation</a></li>
-              <li><a href="/reservation/urgent">Urgent reservation</a></li>
-           </ul>
-        </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Switch shelve<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/wewanttoread">We want just read</a></li>
+                        <li><a href="/welookingfor">We chasing for</a></li>
+                        <li><a href="/wemovethemout">Books who looking for new friend</a></li>
+                        <li><a href="/releasethem">Which we want to release (for) free</a></li>
+                    </ul>
+                </li>
 
-        <li><a href="/user/bills">My bills</a></li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Invoices<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-               <li><a href="/invoice_list">My invoices</a></li>
-               <li><a href="/invoice_new">New invoice</a></li>
-               <li><a href="/invoice_list/unpaid">Invoice to pay</a></li>
+                <!-- <li><a href="/user/bills">My bills</a></li> -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">My library<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/mybooks">My shelves</a></li>
+                        <li><a href="/mywishlist">I want it </a></li>
+                        <li><a href="/myselllist">relese them for cash</a></li>
+                        <li><a href="/myforfree">Relese them (for) free</a></li>
+                        <li><a href="/mybooktoborrow">Book on the leash</a></li>
+                        <li><a href="/mybookborrowed">Check The Leash</a></li>
+                        <li><a href="/mybookwishread">Can I read You</a></li>
+                    </ul>
+                </li>   
+                
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Find friend<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <!-- <li><a href="/wewanttoread">We want just read</a></li>
+                        <li><a href="/welookingfor">We chasing for</a></li>
+                        <li><a href="/wemovethemout">Books who looking for new friend</a></li>
+                        <li><a href="/releasethem">Which we want to release (for) free</a></li> -->
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Messeges<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <!-- <li><a href="/wewanttoread">We want just read</a></li>
+                        <li><a href="/welookingfor">We chasing for</a></li>
+                        <li><a href="/wemovethemout">Books who looking for new friend</a></li>
+                        <li><a href="/releasethem">Which we want to release (for) free</a></li> -->
+                    </ul>
+                </li>
+
+                <!-- {% if user.is_staff %}
+                    <li><a href="/company/members">Members bills</a></li>
+                {% else %}
+                    <li><a href="/company/members">Other Members</a></li>
+                {% endif %}
+
+                {% if user.is_staff %}
+                <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Staff<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                        <li><a href="/admin/reprice">Monthly script</a></li>
+                        <li><a href="/admin/requests/{{ user.username }}">User requests</a></li>
+                </ul>
+                </li>
+                {% endif %}
+
+                {% if user.is_superuser %}
+                    <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Staff<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                            <li><a href="/admin/reprice">Monthly script</a></li>
+                            <li><a href="/admin/requests/{{ user.username }}">User requests</a></li>
+                    </ul>
+                    </li>
+                {% endif %} -->
             </ul>
-         </li>
-
-        {% if user.is_staff %}
-            <li><a href="/company/members">Members bills</a></li>
-        {% else %}
-            <li><a href="/company/members">Other Members</a></li>
-        {% endif %}
-
-        {% if user.is_staff %}
-        <li class="dropdown">
-           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Staff<span class="caret"></span></a>
-           <ul class="dropdown-menu">
-                <li><a href="/admin/reprice">Monthly script</a></li>
-                <li><a href="/admin/requests/{{ user.username }}">User requests</a></li>
-           </ul>
-        </li>
-        {% endif %}
-
-        {% if user.is_superuser %}
-        <li class="dropdown">
-           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Staff<span class="caret"></span></a>
-           <ul class="dropdown-menu">
-            <li><a href="/admin/reprice">Monthly script</a></li>
-            <li><a href="/admin/requests/{{ user.username }}">User requests</a></li>
-           </ul>
-        </li>
-        {% endif %}
-        </ul>
-      {% else %}
-        <guest menu>
-        <ul class="nav navbar-nav">
-                <li><a href="/room_list">Our Rooms</a></li>
-                <li><a href="/buldings">Buldings</a></li>
-                <li><a href="/reservations/availble">Availble reservation</a></li>
-        </ul>
-        </guest menu>
-        {% endif %}
+            {% else %}
+                <guest menu>
+                    <ul class="nav navbar-nav">
+                            <li><a href="/books_list">Books on shelves</a></li>
+                            <li><a href="/books_to_buy">We chasing for these books</a></li>
+                            <li><a href="/books_to_sell">Books who looking for new friend</a></li>
+                    </ul>
+                </guest menu>
+            {% endif %}
 
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
@@ -90,7 +116,7 @@
                     <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
                 {% endif %}
             </ul>
-      </div>
+        </div>
     </nav>
 
     {% if messages %}
@@ -100,8 +126,9 @@
             </div>
         {% endfor %}
     {% endif %}
- {% block content %} {% endblock %}
 
-    </div>
+    {% block content %} {% endblock %}
+
+</div>
 </body>
 </html>
