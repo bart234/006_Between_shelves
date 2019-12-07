@@ -3,7 +3,7 @@ from django.views import View
 from BetweenShelves.forms import FormLogin, FormCreateUser
 from django.contrib import messages
 from django.contrib.auth.models import User
-from BetweenShelves.models import UserCfg
+from BetweenShelves.models import UserCfg, Book
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
@@ -89,12 +89,12 @@ class CreateUser(View):
 """------------------------------------------------ Guest views ------------------------------------------------"""
 class OurBooksList(View):
     def get(self, request):
-        """List of website books - list of wesite books and user - just list wit and rating,  link to site with all comments to this book """
-        pass
-
-    # def post(self, request):
-    #     """"""
-    #     pass
+        """List of website books - list of our books and user - just list wit and rating,  
+        link to site with all comments to this book """
+        #TODO: add  row with sorting option and search , do in in js  without reload
+        #TODO: add info " TO check comment and who can borrow it , please log in"
+        b = Book.objects.all()
+        return render(request, 'ourbookslist.html', {'b':b})
 
 class LookingForBook(View):
     def get(self, request):
