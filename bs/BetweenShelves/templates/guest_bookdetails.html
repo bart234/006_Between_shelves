@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% csrf_token %}
+<!-- b as books obj list -->
+<Table>
+<tr>
+    
+    <th> Title</th>
+    <th> Author</th>
+    <th> Genre</th>
+    <th> SubGenre</th>
+    <th> Heigth</th>
+    <th> Price</th>
+    <th> Rating</th>
+</tr>
+<tr>
+    
+    <td>{{b.title}}</td>
+    <td>{{b.author}}</td>
+    <td>{{b.genre}}</td>
+    <td>{{b.subgenre}}</td>
+    <td>{{b.heigth}}</td>
+    <td>{{b.price}}</td>
+    <td>{{b.rating}}</td>
+</tr>
+</Table>
+
+<table>
+    <tr>
+    
+        <th> User</th>
+        <th> </th>
+        <th> Comment</th>
+    </tr>
+    {% for comm in c %}
+        <tr>
+            <td>{{comm.user}}</td>
+            <td>{{comm.create_time}}</td>
+            <td>{{comm.comment}}</td>
+        </tr>
+    {% endfor %}
+</table>
+<form method="POST" action="/book/{{b.id}}">
+    Add Comment:
+    <textarea rows="4" cols="50" name="com_text"></textarea>
+    <button type="submit">Add</button>
+    {% csrf_token %}
+</form>
+
+{% endblock content %}
+

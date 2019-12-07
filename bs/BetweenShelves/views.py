@@ -3,7 +3,7 @@ from django.views import View
 from BetweenShelves.forms import FormLogin, FormCreateUser
 from django.contrib import messages
 from django.contrib.auth.models import User
-from BetweenShelves.models import UserCfg, Book
+from BetweenShelves.models import UserCfg, Book, Comments
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
@@ -87,6 +87,7 @@ class CreateUser(View):
             return redirect('Login')
 
 """------------------------------------------------ Guest views ------------------------------------------------"""
+
 class OurBooksList(View):
     def get(self, request):
         """List of website books - list of our books and user - just list wit and rating,  
@@ -114,11 +115,23 @@ class BooksToSell(View):
         return render(request, 'guest_bookstosell.html', {'b':t})
 
 
-class BookComments(View):
-    def get(self,request):
-        """site with information about book, all comments, ratings, after login list who hase it, want to read, who borrowing it, who want to sell it"""
-        pass
-
+class BookDetails(View):
+    """site with information about book, all comments, ratings, after login list who hase it,
+     want to read, who borrowing it, who want to sell it"""
+    def get(self,request,id):
+        b = Book.objects.get(id=id)
+        c = Comments.objects.filter(book_id =id)
+        return render(request, 'guest_bookdetails.html', {"b":b, "c":c})
+    
+    #TODO: add part about add comment if loged in
+    """in guest menu , add comment  made just for test"""
+    def post(self,request,id):
+        comm =  request.POST["com_text"]        
+        b = Book.objects.get(id=id)
+        new_com = Comments(user_id =2, book = b, comment =comm)
+        new_com.save()
+        c = Comments.objects.filter(book_id =id)
+        return render(request, 'guest_bookdetails.html', {"b":b, "c":c})
 
 
 """------------------------------------------------ Logged user ------------------------------------------------"""

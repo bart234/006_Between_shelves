@@ -19,6 +19,8 @@ class FormCreateUser(forms.Form):
     email = forms.EmailField(min_length=4, max_length=40, label='Email', required = True)
     mobile = forms.CharField(max_length=9, min_length=9, label="Mobile", required=False)
 
+
+
 # # class FormEditUser(ModelForm):
 # #     class Meta:
 # #         model = User

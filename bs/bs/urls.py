@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.urls import path,re_path
 from BetweenShelves.views import Index, Login, Logout, CreateUser, UserEdit, OurBooksList, LookingForBook, BooksToSell
-from BetweenShelves.views import BookComments
+from BetweenShelves.views import BookDetails
 from BetweenShelves.views import WeLookingFor,WeMoveThemOut,WeReleaseThem,WeWantToRead
 from BetweenShelves.views import MyBooks,MyWishList,MySellList,MyBookToBorrow,MyBookBorrowedSite,MyBookWhichWantToRead,MyForFree
 urlpatterns = [
@@ -17,7 +17,7 @@ urlpatterns = [
     path('books_to_buy/', LookingForBook.as_view(), name ="LookingForBook"),
     path('books_to_sell/', BooksToSell.as_view(), name ="BooksToSell"),
 
-    re_path(r'book/<int:id>',BookComments.as_view(), name="BookComments"),
+    re_path(r'book/(?P<id>(\d){1,6})$',BookDetails.as_view(), name="BookComments"),
 
     # re_path(r'mylibrary/<str:login>', MyLibrary.as_view(), name="MyLibrary"),
     # re_path(r'mylibrary/<str:login>', MyLibrary.as_view(), name="MyLibrary"),
