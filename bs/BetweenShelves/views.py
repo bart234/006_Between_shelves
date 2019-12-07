@@ -94,20 +94,24 @@ class OurBooksList(View):
         #TODO: add  row with sorting option and search , do in in js  without reload
         #TODO: add info " TO check comment and who can borrow it , please log in"
         b = Book.objects.all()
-        return render(request, 'ourbookslist.html', {'b':b})
+        return render(request, 'guest_ourbookslist.html', {'b':b})
 
 class LookingForBook(View):
     def get(self, request):
-        """Looking for book - list with users requests about books , with raings and  link to comment with button i can sell it - which  sen to login /register site"""
-        pass
+        """Looking for book - list with users requests about books , with ratings and  
+        link to comment with button i can sell it - which  sen to login /register site
+        General - without infor who is looking for"""
 
-    def post(self,request):
-        pass        
+        u= UserCfg.objects.select_related().all()
+        t =[zz for el in u if el.user_list_to_buy.all().count() > 0 for zz in el.user_list_to_buy.all() ]
+        return render(request, 'guest_lookingforbook.html', {'b':t})
         
 class BooksToSell(View):
     def get(self, request):
         """List with books to sell from users, with rrating and link to book comments, with button buy  - which send quest to login/register site"""
-        pass
+        u= UserCfg.objects.select_related().all()
+        t =[zz for el in u if el.user_list_to_sell.all().count() > 0 for zz in el.user_list_to_sell.all() ]
+        return render(request, 'guest_bookstosell.html', {'b':t})
 
 
 class BookComments(View):

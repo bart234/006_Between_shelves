@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% csrf_token %}
+<!-- b as books obj list -->
+<Table>
+<tr>
+    <th> Lp.</th>
+    <th> Title</th>
+    <th> Author</th>
+    <th> Genre</th>
+    <th> SubGenre</th>
+    <th> Heigth</th>
+    <th> Price</th>
+    <th> Rating</th>
+</tr>
+    {% for book in b %}
+        <tr>
+            <td>{{forloop.counter}}.</td>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+            <td>{{book.subgenre}}</td>
+            <td>{{book.heigth}}</td>
+            <td>{{book.price}}</td>
+            <td>{{book.rating}}</td>
+
+            <!-- <td>{{ rez_obj.rez_price }}</td>
+            <td>{% if rez_obj.rez_owner == "temporary_rez" %}
+                <button type="submit" name="reserve" value="{{ rez_obj.id }}"> Reserve</button>
+                {% endif%}
+            </td> -->
+        </tr>
+    {% endfor %}
+
+
+</Table>
+
+{% endblock content %}
+
