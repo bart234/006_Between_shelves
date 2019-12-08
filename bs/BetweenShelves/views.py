@@ -11,7 +11,8 @@ from django.contrib.auth import authenticate, login, logout
 class UserEdit(View):
     def get(self, request):
         if User.is_authenticated:
-            u  = User.objects.get(username="User11")
+            #TODO: change to logged user 
+            u  = User.objects.get(username=request.user.username)
             u2 = UserCfg.objects.get(user_id=u.id)
             return render(request, 'user_edit.html', {"user":u,'cfg':u2})
         else:
@@ -138,23 +139,29 @@ class BookDetails(View):
 """------------------------------------------------ User part ------------------------------------------------"""
 class MyBooks(View):
     def get(self,request):
-        """site with my books which user have, all books """
-        pass
+        b= UserCfg.objects.get(user_id = request.user.id)
+        #DOne: raw list made
+        return render(request, 'user_book_list.html',{"b": b.user_books.all()})
 
 class MyForFree(View):
     def get(self,request):
+        #TODO: dont have table for it
         """site with my books which user want to give for free"""
         pass
 
 class MyWishList(View):
     def get(self,request):
         """site with my books which user have list to buy,"""
-        pass
+        b= UserCfg.objects.get(user_id = request.user.id)
+        #DOne: raw list made
+        return render(request, 'user_book_list_buy.html',{"b": b.user_list_to_buy.all()})
 
 class MySellList(View):
     def get(self,request):
         """site with my books which user have to sell"""
-        pass
+        b= UserCfg.objects.get(user_id = request.user.id)
+        #DOne: raw list made
+        return render(request, 'user_book_list_sell.html',{"b": b.user_list_to_sell.all()})
 
 class MyBookToBorrow(View):
     def get(self,request):

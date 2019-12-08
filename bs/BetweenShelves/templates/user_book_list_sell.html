@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% csrf_token %}
+<!-- b as books obj list -->
+<Table>
+<tr>
+    
+    <th> Title</th>
+    <th> Author</th>
+    <th> Genre</th>
+    <th> SubGenre</th>
+    <th> Heigth</th>
+    <th> Price</th>
+    <th> Rating</th>
+</tr>
+
+    {%for el in b %}
+    <tr>
+        <td>{{el.title}}</td>
+        <td>{{el.author}}</td>
+        <td>{{el.genre}}</td>
+        <td>{{el.subgenre}}</td>
+        <td>{{el.heigth}}</td>
+        <td>{{el.price}}</td>
+        <td>{{el.rating}}</td>
+    </tr>
+    {%endfor%}
+</Table>
+
+{% endblock content %}
+
