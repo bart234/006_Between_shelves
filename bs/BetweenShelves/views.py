@@ -164,6 +164,7 @@ class MySellList(View):
         return render(request, 'user_book_list_sell.html',{"b": b.user_list_to_sell.all()})
 
 class MyBookToBorrow(View):
+    #TODO: add in usercfg  , user_list_to_borrow should have only books which you have
     def get(self,request):
         """site with my books which user list to borrow - with numbers of request to borrow"""
         pass
