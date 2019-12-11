@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path,re_path
 from BetweenShelves.views import Index, Login, Logout, CreateUser, UserEdit, OurBooksList, LookingForBook, BooksToSell
 from BetweenShelves.views import BookDetails
-from BetweenShelves.views import WeLookingFor,WeMoveThemOut,WeReleaseThem,WeWantToRead
+from BetweenShelves.views import WeLookingFor,WeMoveThemOut,WeReleaseThem,WeWantToRead,WeOurBooksList
 from BetweenShelves.views import MyBooks,MyWishList,MySellList,MyBookToBorrow,MyBookBorrowedSite,MyBookWhichWantToRead,MyForFree
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -21,6 +21,7 @@ urlpatterns = [
 
     # re_path(r'mylibrary/<str:login>', MyLibrary.as_view(), name="MyLibrary"),
     # re_path(r'mylibrary/<str:login>', MyLibrary.as_view(), name="MyLibrary"),
+    path('ourbooklist/', WeOurBooksList.as_view(), name="OurBookList2"),
     path('wewanttoread/', WeWantToRead.as_view(), name="WeWantToRead"),
     path('welookingfor/', WeLookingFor.as_view(), name="WeLookingFor"),
     path('wemovethemout/', WeMoveThemOut.as_view(), name="WeMoveThemOut"),

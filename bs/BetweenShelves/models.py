@@ -61,8 +61,9 @@ class UserCfg(models.Model):
     user_books = models.ManyToManyField(Book, blank=True, related_name='user_books')
     user_list_to_buy  = models.ManyToManyField(Book, blank=True, related_name='user_buy')
     user_list_to_sell = models.ManyToManyField(Book,  blank=True,related_name='user_sell')
-    user_list_to_lend = models.ManyToManyField(Book,  blank=True,related_name='user_b_lend_for_others')
+    user_list_to_lend = models.ManyToManyField(Book,  blank=True,related_name='user_b_lend_from_others')
     user_list_to_borrow = models.ManyToManyField(Book,  blank=True,related_name='user_b_borrow_to_others')
+    user_list_to_giveforfree = models.ManyToManyField(Book,  blank=True,related_name='user_b_to_giveforfree')
     user_borrowed_b = models.ManyToManyField(Borrows, blank=True, related_name='borrowed_books')
     friends = models.ManyToManyField(User, blank=True, related_name='friends')
     
